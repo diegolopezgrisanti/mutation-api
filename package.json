@@ -1,0 +1,25 @@
+{
+  "name": "mutation-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "start:dev": "node -r dotenv/config index.js",
+    "dev": "nodemon -r dotenv/config index.js",
+    "test": "mocha test/**/*test.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^5.12.5"
+  },
+  "devDependencies": {
+    "chai": "^4.3.4",
+    "dotenv": "^8.2.0",
+    "mocha": "^8.3.2",
+    "nodemon": "^2.0.7"
+  }
+}
