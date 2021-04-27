@@ -1,4 +1,4 @@
-
+const { Mutation } = require("../models");
 class StatsService {
 
     /**
@@ -8,9 +8,13 @@ class StatsService {
      */
     getStats = async () => {
         try {
-            //TODO logic to get stats from db
-            
-            return { "count_mutations":40, "count_no_mutation": 100, "ratio": 0.4 };        
+            const countTotalRegisters = await Mutation.find().count();
+            const countMutations = await Mutation.find({hasMutation: true}).count();
+
+            const countNoMutation = countTotalRegisters - countMutations;
+            const ratio = countMutations / countTotalRegisters;
+
+            return { "count_mutations": countMutations, "count_no_mutation": countNoMutation, "ratio": ratio };        
 
         } catch (error) {
             throw error;

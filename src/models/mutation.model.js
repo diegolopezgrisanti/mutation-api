@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
 const MutationSchema = new Schema({
-    dna: { type: String, required: true },
+    dna: { type: String, unique: true, required: true },
     hasMutation: { type: Boolean },
 });
 

@@ -8,7 +8,6 @@ class MutationService {
      */
     processMutation = async (dna) => {
         try {
-            //TODO find mutation in DB to avoid hasmutation logic
             const hasMutation = this.hasMutation(dna);
             const mutation = new Mutation({
                 dna: JSON.stringify(dna),
