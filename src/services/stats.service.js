@@ -8,11 +8,10 @@ class StatsService {
      */
     getStats = async () => {
         try {
-            const countTotalRegisters = await Mutation.find().count();
             const countMutations = await Mutation.find({hasMutation: true}).count();
+            const countNoMutation = await Mutation.find({hasMutation: false}).count();
 
-            const countNoMutation = countTotalRegisters - countMutations;
-            const ratio = countMutations / countTotalRegisters;
+            const ratio = countMutations / countNoMutation;
 
             return { "count_mutations": countMutations, "count_no_mutation": countNoMutation, "ratio": ratio };        
 
