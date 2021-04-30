@@ -11,7 +11,7 @@ class StatsService {
             const countMutations = await Mutation.find({hasMutation: true}).count();
             const countNoMutation = await Mutation.find({hasMutation: false}).count();
 
-            const ratio = countMutations / countNoMutation;
+            const ratio = (countMutations / countNoMutation).toFixed(2);
 
             return { "count_mutations": countMutations, "count_no_mutation": countNoMutation, "ratio": ratio };        
 
