@@ -8,13 +8,19 @@ class MutationService {
      */
     processMutation = async (dna) => {
         try {
-            const hasMutation = this.hasMutation(dna);
-            const mutation = new Mutation({
-                dna: JSON.stringify(dna),
-                hasMutation
-            });
-            await mutation.save();
-            
+            const searchDNA = await Mutation.findOne({dna: JSON.stringify(dna)}).exec();
+            let hasMutation;
+            if(searchDNA === null) {
+                hasMutation = this.hasMutation(dna);
+                const mutation = new Mutation({
+                    dna: JSON.stringify(dna),
+                    hasMutation
+                });
+                await mutation.save();
+            } else {
+                hasMutation = searchDNA;
+            }
+ 
             return hasMutation;
 
         } catch (error) {
